@@ -1,6 +1,6 @@
 # New York Times Global Offices Map
 
-![NYT Global Map]([https://drive.google.com/file/d/1nT4EJymHSoPGrzHHzVlNTOfvayK3IbDJ/view?usp=drive_link])
+![NYT Global Map](https://drive.google.com/file/d/1nT4EJymHSoPGrzHHzVlNTOfvayK3IbDJ/view?usp=drive_link)
 
 An interactive visualization of The New York Times' global bureau network, showcasing the company's worldwide journalistic presence.
 
@@ -20,7 +20,7 @@ This project visualizes The New York Times' global footprint, highlighting the c
 
 ## Demo
 
-Visit the [live demo](https://yourusername.github.io/nyt-global-map) to explore the map.
+Visit the [live demo](https://iseeubad.github.io/NYT-GLOBAL-PRESENCE/) to explore the map.
 
 ## Technologies Used
 
@@ -68,6 +68,7 @@ start nyt_global_offices_map.html  # On Windows
 
 ```
 nyt-global-map/
+├── index.html  
 ├── nyt_global_map.py           # Main Python script to generate the map
 ├── requirements.txt            # Python dependencies
 ├── nyt_global_offices_map.html # Generated output map
