@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c0f6b904b1d1db6b99f7d06c4dbadaf8 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+<div style="position: fixed; 
+     bottom: 20px; right: 20px; width: 250px;
+     background-color: white; border:1px solid #ccc; z-index:9999; font-size:12px;
+     border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+     padding: 12px; font-family: Arial, sans-serif;">
+     <div style="text-align: center; margin-bottom: 10px;"><b>THE NEW YORK TIMES</b></div>
+     <div style="text-align: center; margin-bottom: 10px;"><b>Global Bureau Network</b></div>
+     <hr style="margin: 5px 0; border-color: #eee;">
+     <div style="display: flex; align-items: center; margin: 8px 0;">
+        <i class="fa fa-building fa-lg" style="color:darkred; margin-right: 10px;"></i> 
+        <span>Global Headquarters (1)</span>
+     </div>
+     <div style="display: flex; align-items: center; margin: 8px 0;">
+        <i class="fa fa-newspaper fa-lg" style="color:darkblue; margin-right: 10px;"></i> 
+        <span>International Bureaus (26)</span>
+     </div>
+     <div style="display: flex; align-items: center; margin: 8px 0;">
+        <i class="fa fa-newspaper fa-lg" style="color:darkgreen; margin-right: 10px;"></i> 
+        <span>US Bureaus (10)</span>
+     </div>
+     <hr style="margin: 5px 0; border-color: #eee;">
+     <div style="font-size: 10px; color: #666; text-align: center;">
+        © The New York Times Company, 2025
+     </div>
+</div>
+    
+<div style="position: fixed; 
+     top: 20px; left: 50%; transform: translateX(-50%);
+     width: 400px; background-color: rgba(255, 255, 255, 0.8);
+     border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+     text-align: center; padding: 10px; z-index: 9998; font-family: Arial, sans-serif;">
+     <h3 style="margin: 0; color: #333;">THE NEW YORK TIMES GLOBAL PRESENCE</h3>
+</div>
+    
+<style>
+.leaflet-popup-content-wrapper {
+    border-radius: 4px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.2);
+}
+.leaflet-popup-content {
+    margin: 13px 19px;
+    line-height: 1.4;
+    font-family: Arial, sans-serif;
+}
+.leaflet-popup-content b {
+    color: #1a1a1a;
+}
+.leaflet-popup-tip-container {
+    margin-top: -1px;
+}
+</style>
+    
+            <div class="folium-map" id="map_c0f6b904b1d1db6b99f7d06c4dbadaf8" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c0f6b904b1d1db6b99f7d06c4dbadaf8 = L.map(
+                "map_c0f6b904b1d1db6b99f7d06c4dbadaf8",
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 2,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_c0f6b904b1d1db6b99f7d06c4dbadaf8);
+
+            
+
+        
+    
+            var tile_layer_18fc162d46ccd924fc974187b5f27d80 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_18fc162d46ccd924fc974187b5f27d80.addTo(map_c0f6b904b1d1db6b99f7d06c4dbadaf8);
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topleft",
+  "title": "Full Screen",
+  "titleCancel": "Exit Full Screen",
+  "forceSeparateButton": false,
+}
+            ).addTo(map_c0f6b904b1d1db6b99f7d06c4dbadaf8);
+        
+    
+            var marker_cluster_28a34ac203ed7803b43ddc08b7f60a9b = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_13ed1d2f0004bfa36853b9038963ca28 = L.marker(
+                [40.7561, -73.9903],
+                {
+}
+            ).addTo(marker_cluster_28a34ac203ed7803b43ddc08b7f60a9b);
+        
+    
+            var icon_6a82c9496703efea542ad73663e7adeb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkred",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5f703789bd55f8697e8617ad835a299e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d1b59ee2b2306b8781eba8f980d9e23a = $(`<div id="html_d1b59ee2b2306b8781eba8f980d9e23a" style="width: 100.0%; height: 100.0%;"><b>New York Times Headquarters</b><br>620 Eighth Avenue<br>New York, NY</div>`)[0];
+                popup_5f703789bd55f8697e8617ad835a299e.setContent(html_d1b59ee2b2306b8781eba8f980d9e23a);
+            
+        
+
+        marker_13ed1d2f0004bfa36853b9038963ca28.bindPopup(popup_5f703789bd55f8697e8617ad835a299e)
+        ;
+
+        
+    
+    
+            marker_13ed1d2f0004bfa36853b9038963ca28.bindTooltip(
+                `<div>
+                     New York Times Headquarters
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_13ed1d2f0004bfa36853b9038963ca28.setIcon(icon_6a82c9496703efea542ad73663e7adeb);
+            
+    
+            marker_cluster_28a34ac203ed7803b43ddc08b7f60a9b.addTo(map_c0f6b904b1d1db6b99f7d06c4dbadaf8);
+        
+    
+            var marker_cluster_e060af3aedc701962a123f139bdb8f43 = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_f0e55426fa4bcf2aee9e8884606aa083 = L.marker(
+                [51.5074, -0.1278],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+            var icon_055ba12d63def6a301db79458c1871ac = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "newspaper",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a328697c06c93d0876dcd736a05feeb9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_54eac29771a0a9dcbb85d7cf3e3e4786 = $(`<div id="html_54eac29771a0a9dcbb85d7cf3e3e4786" style="width: 100.0%; height: 100.0%;"><b>London, United Kingdom</b><br>New York Times Bureau</div>`)[0];
+                popup_a328697c06c93d0876dcd736a05feeb9.setContent(html_54eac29771a0a9dcbb85d7cf3e3e4786);
+            
+        
+
+        marker_f0e55426fa4bcf2aee9e8884606aa083.bindPopup(popup_a328697c06c93d0876dcd736a05feeb9)
+        ;
+
+        
+    
+    
+            marker_f0e55426fa4bcf2aee9e8884606aa083.bindTooltip(
+                `<div>
+                     London, United Kingdom
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f0e55426fa4bcf2aee9e8884606aa083.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_9aff205216bdfe8b64541178b1f4b468 = L.marker(
+                [48.8566, 2.3522],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_403cab4177da80d972cf57a6b586be37 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0dcded52e4c211dd12d06dd50b701f21 = $(`<div id="html_0dcded52e4c211dd12d06dd50b701f21" style="width: 100.0%; height: 100.0%;"><b>Paris, France</b><br>New York Times Bureau</div>`)[0];
+                popup_403cab4177da80d972cf57a6b586be37.setContent(html_0dcded52e4c211dd12d06dd50b701f21);
+            
+        
+
+        marker_9aff205216bdfe8b64541178b1f4b468.bindPopup(popup_403cab4177da80d972cf57a6b586be37)
+        ;
+
+        
+    
+    
+            marker_9aff205216bdfe8b64541178b1f4b468.bindTooltip(
+                `<div>
+                     Paris, France
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9aff205216bdfe8b64541178b1f4b468.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_e1c6885b69e85255957681780d181e61 = L.marker(
+                [52.52, 13.405],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_81e24f683bb04cb84ecd770295a173fd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0b9db90bb0bf358fc96d396c48924f79 = $(`<div id="html_0b9db90bb0bf358fc96d396c48924f79" style="width: 100.0%; height: 100.0%;"><b>Berlin, Germany</b><br>New York Times Bureau</div>`)[0];
+                popup_81e24f683bb04cb84ecd770295a173fd.setContent(html_0b9db90bb0bf358fc96d396c48924f79);
+            
+        
+
+        marker_e1c6885b69e85255957681780d181e61.bindPopup(popup_81e24f683bb04cb84ecd770295a173fd)
+        ;
+
+        
+    
+    
+            marker_e1c6885b69e85255957681780d181e61.bindTooltip(
+                `<div>
+                     Berlin, Germany
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e1c6885b69e85255957681780d181e61.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_85c29545179a13f9917263098a08095e = L.marker(
+                [41.9028, 12.4964],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_0184478e43ea5d9ffa66cbed8c2d848c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_71dba1f2f43ce09e6f4d72d9b1323f3a = $(`<div id="html_71dba1f2f43ce09e6f4d72d9b1323f3a" style="width: 100.0%; height: 100.0%;"><b>Rome, Italy</b><br>New York Times Bureau</div>`)[0];
+                popup_0184478e43ea5d9ffa66cbed8c2d848c.setContent(html_71dba1f2f43ce09e6f4d72d9b1323f3a);
+            
+        
+
+        marker_85c29545179a13f9917263098a08095e.bindPopup(popup_0184478e43ea5d9ffa66cbed8c2d848c)
+        ;
+
+        
+    
+    
+            marker_85c29545179a13f9917263098a08095e.bindTooltip(
+                `<div>
+                     Rome, Italy
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_85c29545179a13f9917263098a08095e.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_e85edb4f4f184bbd17f12ecf3ae1cda5 = L.marker(
+                [50.8503, 4.3517],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_a33218a823421ea3308919e54df914fd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_85fc70507652d53d70c0f89ae10b3f80 = $(`<div id="html_85fc70507652d53d70c0f89ae10b3f80" style="width: 100.0%; height: 100.0%;"><b>Brussels, Belgium</b><br>New York Times Bureau</div>`)[0];
+                popup_a33218a823421ea3308919e54df914fd.setContent(html_85fc70507652d53d70c0f89ae10b3f80);
+            
+        
+
+        marker_e85edb4f4f184bbd17f12ecf3ae1cda5.bindPopup(popup_a33218a823421ea3308919e54df914fd)
+        ;
+
+        
+    
+    
+            marker_e85edb4f4f184bbd17f12ecf3ae1cda5.bindTooltip(
+                `<div>
+                     Brussels, Belgium
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e85edb4f4f184bbd17f12ecf3ae1cda5.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_ce1769a1d642f5741ce0bdb378291050 = L.marker(
+                [55.7558, 37.6173],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_55b66cfea8cc8e4994af07a6c2ffa31f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fbf566aa47e70ae3357050627283efd9 = $(`<div id="html_fbf566aa47e70ae3357050627283efd9" style="width: 100.0%; height: 100.0%;"><b>Moscow, Russia</b><br>New York Times Bureau</div>`)[0];
+                popup_55b66cfea8cc8e4994af07a6c2ffa31f.setContent(html_fbf566aa47e70ae3357050627283efd9);
+            
+        
+
+        marker_ce1769a1d642f5741ce0bdb378291050.bindPopup(popup_55b66cfea8cc8e4994af07a6c2ffa31f)
+        ;
+
+        
+    
+    
+            marker_ce1769a1d642f5741ce0bdb378291050.bindTooltip(
+                `<div>
+                     Moscow, Russia
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ce1769a1d642f5741ce0bdb378291050.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_92c08ef966e7ebbf8fc3f398243bfbda = L.marker(
+                [41.0082, 28.9784],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_13a60a6aab07f660752ff7d052472662 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e877add7177c108cd82d956fec27718c = $(`<div id="html_e877add7177c108cd82d956fec27718c" style="width: 100.0%; height: 100.0%;"><b>Istanbul, Turkey</b><br>New York Times Bureau</div>`)[0];
+                popup_13a60a6aab07f660752ff7d052472662.setContent(html_e877add7177c108cd82d956fec27718c);
+            
+        
+
+        marker_92c08ef966e7ebbf8fc3f398243bfbda.bindPopup(popup_13a60a6aab07f660752ff7d052472662)
+        ;
+
+        
+    
+    
+            marker_92c08ef966e7ebbf8fc3f398243bfbda.bindTooltip(
+                `<div>
+                     Istanbul, Turkey
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_92c08ef966e7ebbf8fc3f398243bfbda.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_7b0ba1b5127c2f783e045ffb4b980494 = L.marker(
+                [30.0444, 31.2357],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_ecc609bbc600c481dc78ad4eb06dee3b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4fafbe8f8efdbf052ee106e9c83f6067 = $(`<div id="html_4fafbe8f8efdbf052ee106e9c83f6067" style="width: 100.0%; height: 100.0%;"><b>Cairo, Egypt</b><br>New York Times Bureau</div>`)[0];
+                popup_ecc609bbc600c481dc78ad4eb06dee3b.setContent(html_4fafbe8f8efdbf052ee106e9c83f6067);
+            
+        
+
+        marker_7b0ba1b5127c2f783e045ffb4b980494.bindPopup(popup_ecc609bbc600c481dc78ad4eb06dee3b)
+        ;
+
+        
+    
+    
+            marker_7b0ba1b5127c2f783e045ffb4b980494.bindTooltip(
+                `<div>
+                     Cairo, Egypt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7b0ba1b5127c2f783e045ffb4b980494.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_c96928e68b0dcbfda5d1d77381b6e5e6 = L.marker(
+                [-26.2041, 28.0473],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_a2ca1b540b7ed4aac5af634c2a1646b2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f8353990600b0060fe695fe13558e02a = $(`<div id="html_f8353990600b0060fe695fe13558e02a" style="width: 100.0%; height: 100.0%;"><b>Johannesburg, South Africa</b><br>New York Times Bureau</div>`)[0];
+                popup_a2ca1b540b7ed4aac5af634c2a1646b2.setContent(html_f8353990600b0060fe695fe13558e02a);
+            
+        
+
+        marker_c96928e68b0dcbfda5d1d77381b6e5e6.bindPopup(popup_a2ca1b540b7ed4aac5af634c2a1646b2)
+        ;
+
+        
+    
+    
+            marker_c96928e68b0dcbfda5d1d77381b6e5e6.bindTooltip(
+                `<div>
+                     Johannesburg, South Africa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c96928e68b0dcbfda5d1d77381b6e5e6.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_ead3f9046df650c8df289e3d1c9813bb = L.marker(
+                [14.7167, -17.4677],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_436ab54789c42be976879521f06b73ac = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_76e45f511743ca8453ae19ec0da8aa6c = $(`<div id="html_76e45f511743ca8453ae19ec0da8aa6c" style="width: 100.0%; height: 100.0%;"><b>Dakar, Senegal</b><br>New York Times Bureau</div>`)[0];
+                popup_436ab54789c42be976879521f06b73ac.setContent(html_76e45f511743ca8453ae19ec0da8aa6c);
+            
+        
+
+        marker_ead3f9046df650c8df289e3d1c9813bb.bindPopup(popup_436ab54789c42be976879521f06b73ac)
+        ;
+
+        
+    
+    
+            marker_ead3f9046df650c8df289e3d1c9813bb.bindTooltip(
+                `<div>
+                     Dakar, Senegal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ead3f9046df650c8df289e3d1c9813bb.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_fb832d208da14737937ca469c1f5acc2 = L.marker(
+                [31.7683, 35.2137],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_778cc4531c41ad40b03e7487e829aa91 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_442deca3213a5738caa37b4d16e1e68c = $(`<div id="html_442deca3213a5738caa37b4d16e1e68c" style="width: 100.0%; height: 100.0%;"><b>Jerusalem, Israel</b><br>New York Times Bureau</div>`)[0];
+                popup_778cc4531c41ad40b03e7487e829aa91.setContent(html_442deca3213a5738caa37b4d16e1e68c);
+            
+        
+
+        marker_fb832d208da14737937ca469c1f5acc2.bindPopup(popup_778cc4531c41ad40b03e7487e829aa91)
+        ;
+
+        
+    
+    
+            marker_fb832d208da14737937ca469c1f5acc2.bindTooltip(
+                `<div>
+                     Jerusalem, Israel
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fb832d208da14737937ca469c1f5acc2.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_ede0aaae2e0274dde2127042647b2d31 = L.marker(
+                [24.7136, 46.6753],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_3e310c62370f9342d0b5b66dd69946d1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_418bfb165bebd2e2c1b11c46182a4ce9 = $(`<div id="html_418bfb165bebd2e2c1b11c46182a4ce9" style="width: 100.0%; height: 100.0%;"><b>Riyadh, Saudi Arabia</b><br>New York Times Bureau</div>`)[0];
+                popup_3e310c62370f9342d0b5b66dd69946d1.setContent(html_418bfb165bebd2e2c1b11c46182a4ce9);
+            
+        
+
+        marker_ede0aaae2e0274dde2127042647b2d31.bindPopup(popup_3e310c62370f9342d0b5b66dd69946d1)
+        ;
+
+        
+    
+    
+            marker_ede0aaae2e0274dde2127042647b2d31.bindTooltip(
+                `<div>
+                     Riyadh, Saudi Arabia
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ede0aaae2e0274dde2127042647b2d31.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_7c5d8969960c5f8a298eff61ad1d8b6c = L.marker(
+                [28.6139, 77.209],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_2c58ebc668cb436949d997a6e932834e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9577ddc95a773d4c44ff44605dbbfdd8 = $(`<div id="html_9577ddc95a773d4c44ff44605dbbfdd8" style="width: 100.0%; height: 100.0%;"><b>New Delhi, India</b><br>New York Times Bureau</div>`)[0];
+                popup_2c58ebc668cb436949d997a6e932834e.setContent(html_9577ddc95a773d4c44ff44605dbbfdd8);
+            
+        
+
+        marker_7c5d8969960c5f8a298eff61ad1d8b6c.bindPopup(popup_2c58ebc668cb436949d997a6e932834e)
+        ;
+
+        
+    
+    
+            marker_7c5d8969960c5f8a298eff61ad1d8b6c.bindTooltip(
+                `<div>
+                     New Delhi, India
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7c5d8969960c5f8a298eff61ad1d8b6c.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_cc8494ea30d3154d8040635014fcc4ee = L.marker(
+                [13.7563, 100.5018],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_eb08772bcada7aaeb1609a48b6e43d9f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_94c736383a520aa17468f385bdb9b144 = $(`<div id="html_94c736383a520aa17468f385bdb9b144" style="width: 100.0%; height: 100.0%;"><b>Bangkok, Thailand</b><br>New York Times Bureau</div>`)[0];
+                popup_eb08772bcada7aaeb1609a48b6e43d9f.setContent(html_94c736383a520aa17468f385bdb9b144);
+            
+        
+
+        marker_cc8494ea30d3154d8040635014fcc4ee.bindPopup(popup_eb08772bcada7aaeb1609a48b6e43d9f)
+        ;
+
+        
+    
+    
+            marker_cc8494ea30d3154d8040635014fcc4ee.bindTooltip(
+                `<div>
+                     Bangkok, Thailand
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cc8494ea30d3154d8040635014fcc4ee.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_00ccb2df981585d3d9c3c28bd5174b30 = L.marker(
+                [10.7769, 106.7009],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_4a012a95d1fbc22cf0017ac3a305cf80 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_73b08453a470384d7fbe2b56fd29f011 = $(`<div id="html_73b08453a470384d7fbe2b56fd29f011" style="width: 100.0%; height: 100.0%;"><b>Ho Chi Minh City, Vietnam</b><br>New York Times Bureau</div>`)[0];
+                popup_4a012a95d1fbc22cf0017ac3a305cf80.setContent(html_73b08453a470384d7fbe2b56fd29f011);
+            
+        
+
+        marker_00ccb2df981585d3d9c3c28bd5174b30.bindPopup(popup_4a012a95d1fbc22cf0017ac3a305cf80)
+        ;
+
+        
+    
+    
+            marker_00ccb2df981585d3d9c3c28bd5174b30.bindTooltip(
+                `<div>
+                     Ho Chi Minh City, Vietnam
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_00ccb2df981585d3d9c3c28bd5174b30.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_1d2b4d6a1ed1c7c23c538c2116a87f41 = L.marker(
+                [35.6895, 139.6917],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_eeb9ab881414261e0c504eed9254c323 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cbe01f480949d9c84a61dd04da3ba919 = $(`<div id="html_cbe01f480949d9c84a61dd04da3ba919" style="width: 100.0%; height: 100.0%;"><b>Tokyo, Japan</b><br>New York Times Bureau</div>`)[0];
+                popup_eeb9ab881414261e0c504eed9254c323.setContent(html_cbe01f480949d9c84a61dd04da3ba919);
+            
+        
+
+        marker_1d2b4d6a1ed1c7c23c538c2116a87f41.bindPopup(popup_eeb9ab881414261e0c504eed9254c323)
+        ;
+
+        
+    
+    
+            marker_1d2b4d6a1ed1c7c23c538c2116a87f41.bindTooltip(
+                `<div>
+                     Tokyo, Japan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1d2b4d6a1ed1c7c23c538c2116a87f41.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_ca22e025053d1894d133186fc188e59e = L.marker(
+                [37.5665, 126.978],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_e07aa224320826d1de60ad0508947ffa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cfea00a0fc7ae358de89a6ef771b5323 = $(`<div id="html_cfea00a0fc7ae358de89a6ef771b5323" style="width: 100.0%; height: 100.0%;"><b>Seoul, South Korea</b><br>New York Times Bureau</div>`)[0];
+                popup_e07aa224320826d1de60ad0508947ffa.setContent(html_cfea00a0fc7ae358de89a6ef771b5323);
+            
+        
+
+        marker_ca22e025053d1894d133186fc188e59e.bindPopup(popup_e07aa224320826d1de60ad0508947ffa)
+        ;
+
+        
+    
+    
+            marker_ca22e025053d1894d133186fc188e59e.bindTooltip(
+                `<div>
+                     Seoul, South Korea
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ca22e025053d1894d133186fc188e59e.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_e0d76d8aca676b8bbe1466403ea63985 = L.marker(
+                [39.9042, 116.4074],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_47ca90e0202a2f38dd3f78ecf51f61cd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_502afae6dacf63b35d60f127431674cb = $(`<div id="html_502afae6dacf63b35d60f127431674cb" style="width: 100.0%; height: 100.0%;"><b>Beijing, China</b><br>New York Times Bureau</div>`)[0];
+                popup_47ca90e0202a2f38dd3f78ecf51f61cd.setContent(html_502afae6dacf63b35d60f127431674cb);
+            
+        
+
+        marker_e0d76d8aca676b8bbe1466403ea63985.bindPopup(popup_47ca90e0202a2f38dd3f78ecf51f61cd)
+        ;
+
+        
+    
+    
+            marker_e0d76d8aca676b8bbe1466403ea63985.bindTooltip(
+                `<div>
+                     Beijing, China
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e0d76d8aca676b8bbe1466403ea63985.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_5e4b8143aaec7573fe827eb4fa07fc27 = L.marker(
+                [31.2304, 121.4737],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_c1abaa0435c21056307c273551fb47ea = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_09c9768851a6e4c5b80584c8606a082d = $(`<div id="html_09c9768851a6e4c5b80584c8606a082d" style="width: 100.0%; height: 100.0%;"><b>Shanghai, China</b><br>New York Times Bureau</div>`)[0];
+                popup_c1abaa0435c21056307c273551fb47ea.setContent(html_09c9768851a6e4c5b80584c8606a082d);
+            
+        
+
+        marker_5e4b8143aaec7573fe827eb4fa07fc27.bindPopup(popup_c1abaa0435c21056307c273551fb47ea)
+        ;
+
+        
+    
+    
+            marker_5e4b8143aaec7573fe827eb4fa07fc27.bindTooltip(
+                `<div>
+                     Shanghai, China
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5e4b8143aaec7573fe827eb4fa07fc27.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_6f5f11e9ec709fcd2f51a3e5dafe29ad = L.marker(
+                [22.3193, 114.1694],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_7d958188001606d32b8e5ca2304e3bae = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5b27e74ea1526d1cfed8e4862b39bf8d = $(`<div id="html_5b27e74ea1526d1cfed8e4862b39bf8d" style="width: 100.0%; height: 100.0%;"><b>Hong Kong, China</b><br>New York Times Bureau</div>`)[0];
+                popup_7d958188001606d32b8e5ca2304e3bae.setContent(html_5b27e74ea1526d1cfed8e4862b39bf8d);
+            
+        
+
+        marker_6f5f11e9ec709fcd2f51a3e5dafe29ad.bindPopup(popup_7d958188001606d32b8e5ca2304e3bae)
+        ;
+
+        
+    
+    
+            marker_6f5f11e9ec709fcd2f51a3e5dafe29ad.bindTooltip(
+                `<div>
+                     Hong Kong, China
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6f5f11e9ec709fcd2f51a3e5dafe29ad.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_c2d3174261320b7714a34fc82fa90fd1 = L.marker(
+                [-33.8688, 151.2093],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_ee18d6c60ef8c0e7b639ccfeb1804019 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_51ded4692ff2d2e6ea2308397be5a0fb = $(`<div id="html_51ded4692ff2d2e6ea2308397be5a0fb" style="width: 100.0%; height: 100.0%;"><b>Sydney, Australia</b><br>New York Times Bureau</div>`)[0];
+                popup_ee18d6c60ef8c0e7b639ccfeb1804019.setContent(html_51ded4692ff2d2e6ea2308397be5a0fb);
+            
+        
+
+        marker_c2d3174261320b7714a34fc82fa90fd1.bindPopup(popup_ee18d6c60ef8c0e7b639ccfeb1804019)
+        ;
+
+        
+    
+    
+            marker_c2d3174261320b7714a34fc82fa90fd1.bindTooltip(
+                `<div>
+                     Sydney, Australia
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c2d3174261320b7714a34fc82fa90fd1.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_82da21b977a9f61bf8914ac348ffb1bb = L.marker(
+                [19.4326, -99.1332],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_500d7969463c3b4f407a188e57478977 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_81a587d24d65dfbe2f31ec51eaeb3666 = $(`<div id="html_81a587d24d65dfbe2f31ec51eaeb3666" style="width: 100.0%; height: 100.0%;"><b>Mexico City, Mexico</b><br>New York Times Bureau</div>`)[0];
+                popup_500d7969463c3b4f407a188e57478977.setContent(html_81a587d24d65dfbe2f31ec51eaeb3666);
+            
+        
+
+        marker_82da21b977a9f61bf8914ac348ffb1bb.bindPopup(popup_500d7969463c3b4f407a188e57478977)
+        ;
+
+        
+    
+    
+            marker_82da21b977a9f61bf8914ac348ffb1bb.bindTooltip(
+                `<div>
+                     Mexico City, Mexico
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_82da21b977a9f61bf8914ac348ffb1bb.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_69d2195baf05492997fe36f2ab8e6d71 = L.marker(
+                [-23.5505, -46.6333],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_62d2edffda3e7fbcf67f02bf4831cf9d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f2ef4a45d16365222f1d0e8c7b925a9d = $(`<div id="html_f2ef4a45d16365222f1d0e8c7b925a9d" style="width: 100.0%; height: 100.0%;"><b>São Paulo, Brazil</b><br>New York Times Bureau</div>`)[0];
+                popup_62d2edffda3e7fbcf67f02bf4831cf9d.setContent(html_f2ef4a45d16365222f1d0e8c7b925a9d);
+            
+        
+
+        marker_69d2195baf05492997fe36f2ab8e6d71.bindPopup(popup_62d2edffda3e7fbcf67f02bf4831cf9d)
+        ;
+
+        
+    
+    
+            marker_69d2195baf05492997fe36f2ab8e6d71.bindTooltip(
+                `<div>
+                     São Paulo, Brazil
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_69d2195baf05492997fe36f2ab8e6d71.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_39a41034831769948dc154c04ddbb49e = L.marker(
+                [50.4501, 30.5234],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_8806156c48da265c76c96555fcdd2c70 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_04064ffeded0eee63c9207b9c84c8285 = $(`<div id="html_04064ffeded0eee63c9207b9c84c8285" style="width: 100.0%; height: 100.0%;"><b>Kyiv, Ukraine</b><br>New York Times Bureau</div>`)[0];
+                popup_8806156c48da265c76c96555fcdd2c70.setContent(html_04064ffeded0eee63c9207b9c84c8285);
+            
+        
+
+        marker_39a41034831769948dc154c04ddbb49e.bindPopup(popup_8806156c48da265c76c96555fcdd2c70)
+        ;
+
+        
+    
+    
+            marker_39a41034831769948dc154c04ddbb49e.bindTooltip(
+                `<div>
+                     Kyiv, Ukraine
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_39a41034831769948dc154c04ddbb49e.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_97f5bec0a45856441fc2c7a5525136ec = L.marker(
+                [52.2297, 21.0122],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_d64c27cab75482709000821f76fac292 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d8fd8bcc472c8c5d67ed0187005d918f = $(`<div id="html_d8fd8bcc472c8c5d67ed0187005d918f" style="width: 100.0%; height: 100.0%;"><b>Warsaw, Poland</b><br>New York Times Bureau</div>`)[0];
+                popup_d64c27cab75482709000821f76fac292.setContent(html_d8fd8bcc472c8c5d67ed0187005d918f);
+            
+        
+
+        marker_97f5bec0a45856441fc2c7a5525136ec.bindPopup(popup_d64c27cab75482709000821f76fac292)
+        ;
+
+        
+    
+    
+            marker_97f5bec0a45856441fc2c7a5525136ec.bindTooltip(
+                `<div>
+                     Warsaw, Poland
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_97f5bec0a45856441fc2c7a5525136ec.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            var marker_bf1aa2b57b80f62d792588080f83b655 = L.marker(
+                [33.3152, 44.3661],
+                {
+}
+            ).addTo(marker_cluster_e060af3aedc701962a123f139bdb8f43);
+        
+    
+        var popup_034fdae4fb60e5224ddc297140ecadf3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8bcba284c3538f739f7e0e45ccaa1a85 = $(`<div id="html_8bcba284c3538f739f7e0e45ccaa1a85" style="width: 100.0%; height: 100.0%;"><b>Baghdad, Iraq</b><br>New York Times Bureau</div>`)[0];
+                popup_034fdae4fb60e5224ddc297140ecadf3.setContent(html_8bcba284c3538f739f7e0e45ccaa1a85);
+            
+        
+
+        marker_bf1aa2b57b80f62d792588080f83b655.bindPopup(popup_034fdae4fb60e5224ddc297140ecadf3)
+        ;
+
+        
+    
+    
+            marker_bf1aa2b57b80f62d792588080f83b655.bindTooltip(
+                `<div>
+                     Baghdad, Iraq
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bf1aa2b57b80f62d792588080f83b655.setIcon(icon_055ba12d63def6a301db79458c1871ac);
+            
+    
+            marker_cluster_e060af3aedc701962a123f139bdb8f43.addTo(map_c0f6b904b1d1db6b99f7d06c4dbadaf8);
+        
+    
+            var marker_cluster_788e89518957a71741328a30cc14b07f = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_b98a4884b60c306822372cbf6c4f4b96 = L.marker(
+                [38.9072, -77.0369],
+                {
+}
+            ).addTo(marker_cluster_788e89518957a71741328a30cc14b07f);
+        
+    
+            var icon_c6395667e7df852340fa9fd5479a86d9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkgreen",
+  "iconColor": "white",
+  "icon": "newspaper",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c1829fdf2df73a3d4131fdcfc82410aa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4a7c113bc4595e118eeafb2a3728baca = $(`<div id="html_4a7c113bc4595e118eeafb2a3728baca" style="width: 100.0%; height: 100.0%;"><b>Washington, D.C.</b><br>New York Times Bureau</div>`)[0];
+                popup_c1829fdf2df73a3d4131fdcfc82410aa.setContent(html_4a7c113bc4595e118eeafb2a3728baca);
+            
+        
+
+        marker_b98a4884b60c306822372cbf6c4f4b96.bindPopup(popup_c1829fdf2df73a3d4131fdcfc82410aa)
+        ;
+
+        
+    
+    
+            marker_b98a4884b60c306822372cbf6c4f4b96.bindTooltip(
+                `<div>
+                     Washington, D.C.
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b98a4884b60c306822372cbf6c4f4b96.setIcon(icon_c6395667e7df852340fa9fd5479a86d9);
+            
+    
+            var marker_e568d024ea51f51a66e1b54bad59d893 = L.marker(
+                [41.8781, -87.6298],
+                {
+}
+            ).addTo(marker_cluster_788e89518957a71741328a30cc14b07f);
+        
+    
+        var popup_fb6ac5a8edaffdc360cb598b6fa0d002 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_180b7e2663df92832d04516cc59f6cce = $(`<div id="html_180b7e2663df92832d04516cc59f6cce" style="width: 100.0%; height: 100.0%;"><b>Chicago, IL</b><br>New York Times Bureau</div>`)[0];
+                popup_fb6ac5a8edaffdc360cb598b6fa0d002.setContent(html_180b7e2663df92832d04516cc59f6cce);
+            
+        
+
+        marker_e568d024ea51f51a66e1b54bad59d893.bindPopup(popup_fb6ac5a8edaffdc360cb598b6fa0d002)
+        ;
+
+        
+    
+    
+            marker_e568d024ea51f51a66e1b54bad59d893.bindTooltip(
+                `<div>
+                     Chicago, IL
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e568d024ea51f51a66e1b54bad59d893.setIcon(icon_c6395667e7df852340fa9fd5479a86d9);
+            
+    
+            var marker_75020898629a751d200b28f50731c2ee = L.marker(
+                [34.0522, -118.2437],
+                {
+}
+            ).addTo(marker_cluster_788e89518957a71741328a30cc14b07f);
+        
+    
+        var popup_912254a0f7a61a35e8fef349613c20a6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4d78f78269e912053a2115b28660d579 = $(`<div id="html_4d78f78269e912053a2115b28660d579" style="width: 100.0%; height: 100.0%;"><b>Los Angeles, CA</b><br>New York Times Bureau</div>`)[0];
+                popup_912254a0f7a61a35e8fef349613c20a6.setContent(html_4d78f78269e912053a2115b28660d579);
+            
+        
+
+        marker_75020898629a751d200b28f50731c2ee.bindPopup(popup_912254a0f7a61a35e8fef349613c20a6)
+        ;
+
+        
+    
+    
+            marker_75020898629a751d200b28f50731c2ee.bindTooltip(
+                `<div>
+                     Los Angeles, CA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_75020898629a751d200b28f50731c2ee.setIcon(icon_c6395667e7df852340fa9fd5479a86d9);
+            
+    
+            var marker_f967fd631f67e2e1a038c62abd9341b3 = L.marker(
+                [37.7749, -122.4194],
+                {
+}
+            ).addTo(marker_cluster_788e89518957a71741328a30cc14b07f);
+        
+    
+        var popup_9f275f3a352c35225bfb4bf6996abeeb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_eff09fb0bb7f736d81523acbb3a88393 = $(`<div id="html_eff09fb0bb7f736d81523acbb3a88393" style="width: 100.0%; height: 100.0%;"><b>San Francisco, CA</b><br>New York Times Bureau</div>`)[0];
+                popup_9f275f3a352c35225bfb4bf6996abeeb.setContent(html_eff09fb0bb7f736d81523acbb3a88393);
+            
+        
+
+        marker_f967fd631f67e2e1a038c62abd9341b3.bindPopup(popup_9f275f3a352c35225bfb4bf6996abeeb)
+        ;
+
+        
+    
+    
+            marker_f967fd631f67e2e1a038c62abd9341b3.bindTooltip(
+                `<div>
+                     San Francisco, CA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f967fd631f67e2e1a038c62abd9341b3.setIcon(icon_c6395667e7df852340fa9fd5479a86d9);
+            
+    
+            var marker_942d92a6e7da720b8adc15e801ecfaa7 = L.marker(
+                [47.6062, -122.3321],
+                {
+}
+            ).addTo(marker_cluster_788e89518957a71741328a30cc14b07f);
+        
+    
+        var popup_3b0449f1db8bc2f2c16f3e4b2de8ec3f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a50dd4e04289d34f364f40f7429fddab = $(`<div id="html_a50dd4e04289d34f364f40f7429fddab" style="width: 100.0%; height: 100.0%;"><b>Seattle, WA</b><br>New York Times Bureau</div>`)[0];
+                popup_3b0449f1db8bc2f2c16f3e4b2de8ec3f.setContent(html_a50dd4e04289d34f364f40f7429fddab);
+            
+        
+
+        marker_942d92a6e7da720b8adc15e801ecfaa7.bindPopup(popup_3b0449f1db8bc2f2c16f3e4b2de8ec3f)
+        ;
+
+        
+    
+    
+            marker_942d92a6e7da720b8adc15e801ecfaa7.bindTooltip(
+                `<div>
+                     Seattle, WA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_942d92a6e7da720b8adc15e801ecfaa7.setIcon(icon_c6395667e7df852340fa9fd5479a86d9);
+            
+    
+            var marker_10d0f9da23a89d255e5fbac670b68e96 = L.marker(
+                [25.7617, -80.1918],
+                {
+}
+            ).addTo(marker_cluster_788e89518957a71741328a30cc14b07f);
+        
+    
+        var popup_80829e0c998b076f1b17c5989e697f73 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4935a87bb48b49cb78699b4267914ac1 = $(`<div id="html_4935a87bb48b49cb78699b4267914ac1" style="width: 100.0%; height: 100.0%;"><b>Miami, FL</b><br>New York Times Bureau</div>`)[0];
+                popup_80829e0c998b076f1b17c5989e697f73.setContent(html_4935a87bb48b49cb78699b4267914ac1);
+            
+        
+
+        marker_10d0f9da23a89d255e5fbac670b68e96.bindPopup(popup_80829e0c998b076f1b17c5989e697f73)
+        ;
+
+        
+    
+    
+            marker_10d0f9da23a89d255e5fbac670b68e96.bindTooltip(
+                `<div>
+                     Miami, FL
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_10d0f9da23a89d255e5fbac670b68e96.setIcon(icon_c6395667e7df852340fa9fd5479a86d9);
+            
+    
+            var marker_ca45d58a7a0ed250f2d43ebba77522ef = L.marker(
+                [33.749, -84.388],
+                {
+}
+            ).addTo(marker_cluster_788e89518957a71741328a30cc14b07f);
+        
+    
+        var popup_388432fe4b359f91ff6336fbd2f38e6c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_549c38d67b036c79a44820c90d29d98a = $(`<div id="html_549c38d67b036c79a44820c90d29d98a" style="width: 100.0%; height: 100.0%;"><b>Atlanta, GA</b><br>New York Times Bureau</div>`)[0];
+                popup_388432fe4b359f91ff6336fbd2f38e6c.setContent(html_549c38d67b036c79a44820c90d29d98a);
+            
+        
+
+        marker_ca45d58a7a0ed250f2d43ebba77522ef.bindPopup(popup_388432fe4b359f91ff6336fbd2f38e6c)
+        ;
+
+        
+    
+    
+            marker_ca45d58a7a0ed250f2d43ebba77522ef.bindTooltip(
+                `<div>
+                     Atlanta, GA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ca45d58a7a0ed250f2d43ebba77522ef.setIcon(icon_c6395667e7df852340fa9fd5479a86d9);
+            
+    
+            var marker_2075fc79c6641d27ff6a3758a0b3947f = L.marker(
+                [29.7604, -95.3698],
+                {
+}
+            ).addTo(marker_cluster_788e89518957a71741328a30cc14b07f);
+        
+    
+        var popup_7870ad4d915e5b995be0d0a8a9d2eac5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_39793b8ed07c97565d8095832205e320 = $(`<div id="html_39793b8ed07c97565d8095832205e320" style="width: 100.0%; height: 100.0%;"><b>Houston, TX</b><br>New York Times Bureau</div>`)[0];
+                popup_7870ad4d915e5b995be0d0a8a9d2eac5.setContent(html_39793b8ed07c97565d8095832205e320);
+            
+        
+
+        marker_2075fc79c6641d27ff6a3758a0b3947f.bindPopup(popup_7870ad4d915e5b995be0d0a8a9d2eac5)
+        ;
+
+        
+    
+    
+            marker_2075fc79c6641d27ff6a3758a0b3947f.bindTooltip(
+                `<div>
+                     Houston, TX
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2075fc79c6641d27ff6a3758a0b3947f.setIcon(icon_c6395667e7df852340fa9fd5479a86d9);
+            
+    
+            var marker_74174e8988b0e7c6c91cd162fd50b8fb = L.marker(
+                [36.1627, -86.7816],
+                {
+}
+            ).addTo(marker_cluster_788e89518957a71741328a30cc14b07f);
+        
+    
+        var popup_c88724111562bf50b0f3235b56135827 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_23454133a2873005e5cdc3f66b3329ed = $(`<div id="html_23454133a2873005e5cdc3f66b3329ed" style="width: 100.0%; height: 100.0%;"><b>Nashville, TN</b><br>New York Times Bureau</div>`)[0];
+                popup_c88724111562bf50b0f3235b56135827.setContent(html_23454133a2873005e5cdc3f66b3329ed);
+            
+        
+
+        marker_74174e8988b0e7c6c91cd162fd50b8fb.bindPopup(popup_c88724111562bf50b0f3235b56135827)
+        ;
+
+        
+    
+    
+            marker_74174e8988b0e7c6c91cd162fd50b8fb.bindTooltip(
+                `<div>
+                     Nashville, TN
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_74174e8988b0e7c6c91cd162fd50b8fb.setIcon(icon_c6395667e7df852340fa9fd5479a86d9);
+            
+    
+            var marker_7f55aff60363289ea3da68558d6f087f = L.marker(
+                [42.6526, -73.7562],
+                {
+}
+            ).addTo(marker_cluster_788e89518957a71741328a30cc14b07f);
+        
+    
+        var popup_2b0cf2ddb8b35b28a1882fdc4dae6f7d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5b644fbcbfcb9a4f2e955b9ef1fbb83b = $(`<div id="html_5b644fbcbfcb9a4f2e955b9ef1fbb83b" style="width: 100.0%; height: 100.0%;"><b>Albany, NY</b><br>New York Times Bureau</div>`)[0];
+                popup_2b0cf2ddb8b35b28a1882fdc4dae6f7d.setContent(html_5b644fbcbfcb9a4f2e955b9ef1fbb83b);
+            
+        
+
+        marker_7f55aff60363289ea3da68558d6f087f.bindPopup(popup_2b0cf2ddb8b35b28a1882fdc4dae6f7d)
+        ;
+
+        
+    
+    
+            marker_7f55aff60363289ea3da68558d6f087f.bindTooltip(
+                `<div>
+                     Albany, NY
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7f55aff60363289ea3da68558d6f087f.setIcon(icon_c6395667e7df852340fa9fd5479a86d9);
+            
+    
+            marker_cluster_788e89518957a71741328a30cc14b07f.addTo(map_c0f6b904b1d1db6b99f7d06c4dbadaf8);
+        
+    
+            var layer_control_17628c8f79cdcbc0ace4440572a024c6_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_18fc162d46ccd924fc974187b5f27d80,
+                },
+                overlays :  {
+                },
+            };
+            let layer_control_17628c8f79cdcbc0ace4440572a024c6 = L.control.layers(
+                layer_control_17628c8f79cdcbc0ace4440572a024c6_layers.base_layers,
+                layer_control_17628c8f79cdcbc0ace4440572a024c6_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_c0f6b904b1d1db6b99f7d06c4dbadaf8);
+
+        
+</script>
+</html>
