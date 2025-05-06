@@ -1,6 +1,6 @@
 # New York Times Global Offices Map
 
-![NYT Global Map](https://via.placeholder.com/800x400?text=NYT+Global+Offices+Map)
+![NYT Global Map]([https://drive.google.com/file/d/1nT4EJymHSoPGrzHHzVlNTOfvayK3IbDJ/view?usp=drive_link])
 
 An interactive visualization of The New York Times' global bureau network, showcasing the company's worldwide journalistic presence.
 
